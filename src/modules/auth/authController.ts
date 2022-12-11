@@ -24,6 +24,10 @@ export class AuthController {
       }
   }
 
+  public successStatus = (req: Request, res: Response, next: NextFunction) => {
+     return res.status(200).send()
+  }
+
   public authenticateUser = (req: Request, res: Response, next: NextFunction) => {
     try{
       if(!req.body.username) {
@@ -32,7 +36,7 @@ export class AuthController {
 
       let cacheResponse;
       if(!this.cache.has(req.body.username)) {
-         cacheResponse = this.cache.set( req.body.username, {}, Cache.Instance.getCacheTimeout() );
+         cacheResponse = this.cache.set( req.body.username, [], Cache.Instance.getCacheTimeout() );
       } else {
         return res.status(409).send({ status: "error", message: "username already taken"  });
       }

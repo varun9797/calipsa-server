@@ -11,13 +11,14 @@ export class ImageDetectionController {
 
   // TODO - need to add  JOI validation
   public upload = (req: Request, res: Response, next: NextFunction) => {
-    this.cache.set( req.user.username, req.body, Cache.Instance.getCacheTimeout() );
+    let data: any = this.cache.get( req.user.username)  || [];
+    this.cache.set( req.user.username, [...data, req.body], Cache.Instance.getCacheTimeout() );
     return res.status(200).send({message: "sucessfull"});
   }
 
   public getDetails = (req: Request, res: Response, next: NextFunction) => {
       const data = this.cache.get( req.user.username);
-      return res.status(200).send({data: data});
+      return res.status(200).send(data);
   }
 
 }

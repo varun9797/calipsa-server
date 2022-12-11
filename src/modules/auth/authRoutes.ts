@@ -12,5 +12,6 @@ export class AuthRoutes {
     }
     routes() {
         this.router.post("/login", this.authController.authenticateUser);
+        this.router.get("/verify-token", this.authController.validateJwt, this.authController.successStatus);
     }
 }
