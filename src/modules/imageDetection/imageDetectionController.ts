@@ -9,6 +9,7 @@ export class ImageDetectionController {
     this.cache = Cache.Instance.getCache();
   }
 
+  // TODO - need to add  JOI validation
   public upload = (req: Request, res: Response, next: NextFunction) => {
     this.cache.set( req.user.username, req.body, Cache.Instance.getCacheTimeout() );
     return res.status(200).send({message: "sucessfull"});
