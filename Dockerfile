@@ -5,10 +5,7 @@ ENV NODE_ENV production
 
 ADD dist /home/node/app/dist
 ADD package.json /home/node/app/package.json
-
-ENV MONGODB_URI mongodb://db:27017
 ENV JWT_SECRET ashdfjhasdlkjfhalksdjhflak
-ENV SALT_SECRET 8
 
 RUN chown -R node:node /home/node/app 
 
